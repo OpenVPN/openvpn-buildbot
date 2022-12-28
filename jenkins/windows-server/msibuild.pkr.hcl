@@ -5,7 +5,7 @@ build {
   }
   source "amazon-ebs.windows-server-2022" {
     name     = "msibuild-windows-server-2022-2.6"
-    ami_name = "msibuild-windows-server-2022-2.6-1"
+    ami_name = "msibuild-windows-server-2022-2.6-2"
   }
 
   provisioner "file" {
@@ -48,6 +48,7 @@ build {
     inline = ["C:/Windows/Temp/scripts/vsbuildtools.ps1 -version 2022"]
   }
   provisioner "powershell" {
+    only   = ["amazon-ebs.msibuild-windows-server-2019-2.5"]
     inline = ["C:/Windows/Temp/scripts/vcpkg.ps1 -workdir C:\\buildbot\\msbuild"]
   }
   provisioner "powershell" {
@@ -56,7 +57,7 @@ build {
   }
   provisioner "powershell" {
     only   = ["amazon-ebs.msibuild-windows-server-2022-2.6"]
-    inline = ["C:/Windows/Temp/scripts/build-deps.ps1 -workdir C:\\buildbot\\msbuild -openvpn_ref master -openvpn_build_ref master -openvpn_gui master -debug"]
+    inline = ["C:/Windows/Temp/scripts/build-deps-unified.ps1 -workdir C:\\buildbot\\msbuild -openvpn_build_ref release/2.6 -debug"]
   }
   provisioner "powershell" {
     inline = ["C:/Windows/Temp/scripts/aws-cloudhsm.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild"]
