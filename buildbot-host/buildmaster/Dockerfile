@@ -1,5 +1,5 @@
 ARG MY_NAME="buildmaster"
-ARG MY_VERSION="v2.1.0"
+ARG MY_VERSION="v2.2.0"
 ARG IMAGE=buildbot/buildbot-master:v3.5.0
 
 FROM $IMAGE
@@ -30,9 +30,9 @@ COPY buildmaster/msbuild-x64_arm64.bat $BASEDIR
 COPY buildmaster/sign-binaries.bat $BASEDIR
 COPY buildmaster/debian-*.sh $BASEDIR/
 COPY buildmaster/debian-*.py $BASEDIR/
+COPY buildmaster/debian-changelog.tmpl $BASEDIR/
 COPY buildmaster/import-signing-cert.ps1 $BASEDIR/
 COPY buildmaster/authenticode.pfx $BASEDIR/
-ADD buildmaster/debian $BASEDIR/debian
 ADD buildmaster/openvpn $BASEDIR/openvpn
 ADD buildmaster/openvpn3 $BASEDIR/openvpn3
 ADD buildmaster/openvpn3-linux $BASEDIR/openvpn3-linux

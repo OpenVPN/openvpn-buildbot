@@ -27,17 +27,13 @@ if [ "$WORKERNAME" = "" ] || [ "$TBV" = "" ] || [ "$SV" = "" ]; then
   exit 1
 fi
 
-tar -zxf openvpn-$TBV.tar.gz
+tar -xf openvpn-$TBV.tar.gz
+mv openvpn-$TBV.tar.gz openvpn_$SV.orig.tar.gz
 mv openvpn-$TBV openvpn-$SV
-tar -zcf openvpn_$SV.orig.tar.gz openvpn-$SV
-tar -C openvpn-$SV -xvf debian.tar
-rm -f debian.tar
+cp -a ../openvpn-build/debian-sbuild/packaging/$WORKERNAME/debian openvpn-$SV/
 ./debian-generate-changelog.sh $SV
 mv debian-changelog openvpn-$SV/debian/changelog
 
-CWD=`pwd`
 cd openvpn-$SV
 dpkg-buildpackage -d -S -uc
 dpkg-buildpackage -b
-cd $CWD
-
