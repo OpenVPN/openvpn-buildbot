@@ -2,7 +2,7 @@ param ([string] $configfiles)
 
 Write-Host "Installing OpenSSH"
 
-. C:\Windows\Temp\scripts\ps_support.ps1
+. $PSScriptRoot\ps_support.ps1
 
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 CheckLastExitCode
@@ -27,3 +27,5 @@ icacls C:\ProgramData\ssh\administrators_authorized_keys /inheritance:r /grant:r
 CheckLastExitCode
 icacls C:\ProgramData\ssh\administrators_authorized_keys /grant system:f
 CheckLastExitCode
+
+Start-Service sshd
