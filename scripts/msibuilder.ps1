@@ -1,16 +1,14 @@
 Write-Host "Installing dependencies for building MSI packages"
 
+. $PSScriptRoot\ps_support.ps1
+
 # Chocolatey package bundles WiX version too old for building ARM64 MSIs.
 #& choco.exe install -y wixtoolset
 
-# Invoke-Webrequest seems to exit before the installer has been completely
-# downloaded, resulting in a silent WiX installation failure. Therefore we
-# wrap it into a Job to ensure that the installer has downloaded before
-# attempting to run it.
-Start-Job -Name "GetWiX" -ScriptBlock { Invoke-WebRequest -Uri https://wixtoolset.org/downloads/v3.14.0.4118/wix314.exe -Outfile "C:\Windows\Temp\wix314.exe" }
-Wait-Job -Name "GetWiX"
+Invoke-WebRequest -Uri "https://build.openvpn.net/downloads/temp/wix314.exe" -Outfile "C:\Windows\Temp\wix314.exe"
 
 & "C:\Windows\Temp\wix314.exe" /q
+CheckLastExitCode
 
 # Add WiX tools to PATH. Adapted from https://www.yudhistiramauris.com/add-new-entry-to-path-variable-permanently-using-windows-powershell
 $wixpath = "C:\Program Files (x86)\WiX Toolset v3.14\bin"
