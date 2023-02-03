@@ -21,6 +21,7 @@ jsoncpp-devel \
 libcap-devel \
 libcap-ng-devel \
 libcmocka-devel \
+libnl3-devel \
 libtool \
 libuuid-devel \
 libxml2 \

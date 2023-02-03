@@ -16,6 +16,7 @@ git \
 iproute2 \
 jsoncpp-dev \
 libcap-ng-dev \
+libnl3-dev \
 libtool \
 libuuid \
 libxml2-dev \

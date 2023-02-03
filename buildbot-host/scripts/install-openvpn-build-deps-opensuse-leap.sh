@@ -25,6 +25,7 @@ libcap-devel \
 libcap-ng-devel \
 libcmocka-devel \
 liblz4-devel \
+libnl3-devel \
 libxml2-devel \
 libtool \
 libselinux-devel \

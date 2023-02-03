@@ -26,6 +26,7 @@ inetutils \
 jsoncpp \
 libcap \
 libcap-ng \
+libnl \
 libtool \
 linux-headers \
 lz4 \
