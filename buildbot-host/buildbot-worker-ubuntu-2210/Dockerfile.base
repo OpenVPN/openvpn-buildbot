@@ -1,5 +1,0 @@
-ARG IMAGE=ubuntu:22.10
-ARG DEPS_SH=install-openvpn-build-deps-ubuntu.sh
-ARG MY_NAME="buildbot-worker-ubuntu-2210"
-ARG MY_VERSION="v1.0.0"
-ARG ASIO_REF="asio-1-18-2"
