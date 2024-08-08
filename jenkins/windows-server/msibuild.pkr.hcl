@@ -1,11 +1,11 @@
 build {
   source "amazon-ebs.windows-server-2019" {
     name     = "msibuild-windows-server-2019-2.5"
-    ami_name = "msibuild-windows-server-2019-2.5-4"
+    ami_name = "msibuild-windows-server-2019-2.5-5"
   }
   source "amazon-ebs.windows-server-2022" {
     name     = "msibuild-windows-server-2022-2.6"
-    ami_name = "msibuild-windows-server-2022-2.6-5"
+    ami_name = "msibuild-windows-server-2022-2.6-6"
   }
 
   provisioner "file" {
@@ -60,5 +60,8 @@ build {
   }
   provisioner "powershell" {
     inline = ["C:/Windows/Temp/scripts/aws-cloudhsm.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild"]
+  }
+  provisioner "powershell" {
+    inline = ["C:/Windows/Temp/scripts/jsign.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild"]
   }
 }

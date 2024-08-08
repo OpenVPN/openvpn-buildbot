@@ -44,7 +44,7 @@ variable "run_tags" {
 source "amazon-ebs" "windows-server-2019" {
   communicator         = "winrm"
   force_deregister     = true
-  instance_type        = "c5a.xlarge"
+  instance_type        = "c6a.xlarge"
   iam_instance_profile = var.windows_server_instance_profile
   region               = var.windows_server_ec2_region
   subnet_id            = var.windows_server_ec2_subnet
@@ -52,7 +52,7 @@ source "amazon-ebs" "windows-server-2019" {
   launch_block_device_mappings {
     device_name           = "/dev/sda1"
     volume_size           = 80
-    volume_type           = "gp2"
+    volume_type           = "gp3"
     delete_on_termination = true
   }
 
@@ -88,7 +88,7 @@ source "amazon-ebs" "windows-server-2019" {
 source "amazon-ebs" "windows-server-2022" {
   communicator         = "winrm"
   force_deregister     = true
-  instance_type        = "c5a.xlarge"
+  instance_type        = "c6a.xlarge"
   iam_instance_profile = var.windows_server_instance_profile
   region               = var.windows_server_ec2_region
   subnet_id            = var.windows_server_ec2_subnet
@@ -96,7 +96,7 @@ source "amazon-ebs" "windows-server-2022" {
   launch_block_device_mappings {
     device_name           = "/dev/sda1"
     volume_size           = 80
-    volume_type           = "gp2"
+    volume_type           = "gp3"
     delete_on_termination = true
   }
 
