@@ -279,6 +279,55 @@ docker_url=tcp://172.18.0.1:2375
 docker_url=tcp://10.29.32.2:2375
 ```
 
+# Email notification setup
+
+Buildbot expects a local MTA such as postfix to be configured correctly.
+However, there are still several parameters in *master.ini* for configuring
+email notification preferences.
+
+You can define an *owner* property for each project separately. It defines an
+email address where build failure notifications for that project are sent.
+
+```
+
+# Applies when a project-specific "owner" is missing
+[DEFAULT]
+owner=buildbot@example.org
+
+[openvpn]
+owner=openvpn@example.org
+
+[openvpn3]
+owner=openvpn3@example.org
+
+[openvpn3-linux]
+owner=openvpn3-linux@example.org
+
+[ovpn-dco]
+owner=ovpn-dco@example.org
+```
+
+Note that value of *owner* must not be quoted.
+
+Other settings that affect mail delivery are:
+
+```
+[email]
+# Send email to this address when a worker goes missing. Only affects "always-on" workers.
+notify_on_missing=["buildbot@example.org"]
+
+# Additional recipients who should get all build failure emails.
+extra_recipients=["buildbot@example.org"]
+
+# Source address for the emails. Should generally match the SMTP username in
+# the local MTA configuration.
+fromaddr=buildbot@example.org
+
+# Address of the local MTA as seen by the Buildmaster container. Usually the
+# Docker host that also runs Buildbot.
+relayhost=172.18.0.1
+```
+
 # Development
 
 ## Defining image version and name
