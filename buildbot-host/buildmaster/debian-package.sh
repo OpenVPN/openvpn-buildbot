@@ -14,7 +14,7 @@ while getopts "hw:c:s:" arg; do
       exit 0
       ;;
     w)
-      WORKERNAME=$OPTARG
+      WORKERNAME=${OPTARG%%-arm64}
       ;;
   esac
 done
