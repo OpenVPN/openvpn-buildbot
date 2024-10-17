@@ -1,0 +1,5 @@
+ARG OPENVPN_LEGACY_SH=install-openvpn-legacy.sh
+COPY scripts/${OPENVPN_LEGACY_SH} /buildbot/
+RUN /buildbot/${OPENVPN_LEGACY_SH}
+
+COPY ${MY_NAME}/t_server_null.rc-legacy /buildbot/t_server_null.rc

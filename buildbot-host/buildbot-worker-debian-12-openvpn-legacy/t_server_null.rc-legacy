@@ -1,0 +1,67 @@
+TEST_RUN_LIST="1a 1b 1c 1d 2a 2b 2c 2d 3a 3b 3c 3d"
+
+# OpenVPN 2.5 does not support --explicit-exit-notify option in TCP mode.
+# Otherwise these base options match CLIENT_BASE_OPTS in
+# t_server_null_default.rc.
+CLIENT_BASE_OPTS_25_TCP="--client --dev null --ifconfig-noexec --nobind --remote-cert-tls server --persist-tun --verb 3 --resolv-retry infinite --connect-retry-max 3 --server-poll-timeout 5 --script-security 2 --up ${srcdir}/null_client_up.sh"
+CLIENT_CONF_BASE_25_TCP="${CLIENT_BASE_OPTS_25_TCP} ${CLIENT_CIPHER_OPTS} ${CLIENT_CERT_OPTS}"
+
+TEST_NAME_1a="t_server_null_client.sh-openvpn_26_openssl_udp"
+SHOULD_PASS_1a="${SHOULD_PASS_1}"
+CLIENT_EXEC_1a="/opt/openvpn-2.6-openssl/sbin/openvpn"
+CLIENT_CONF_1a="${CLIENT_CONF_1}"
+
+TEST_NAME_1b="t_server_null_client.sh-openvpn_26_mbedtls_udp"
+SHOULD_PASS_1b="${SHOULD_PASS_1}"
+CLIENT_EXEC_1b="/opt/openvpn-2.6-mbedtls/sbin/openvpn"
+CLIENT_CONF_1b="${CLIENT_CONF_1}"
+
+TEST_NAME_1c="t_server_null_client.sh-openvpn_25_openssl_udp"
+SHOULD_PASS_1c="${SHOULD_PASS_1}"
+CLIENT_EXEC_1c="/opt/openvpn-2.5-openssl/sbin/openvpn"
+CLIENT_CONF_1c="${CLIENT_CONF_1}"
+
+TEST_NAME_1d="t_server_null_client.sh-openvpn_25_mbedtls_udp"
+SHOULD_PASS_1d="${SHOULD_PASS_1}"
+CLIENT_EXEC_1d="/opt/openvpn-2.5-mbedtls/sbin/openvpn"
+CLIENT_CONF_1d="${CLIENT_CONF_1}"
+
+TEST_NAME_2a="t_server_null_client.sh-openvpn_26_openssl_tcp"
+SHOULD_PASS_2a="${SHOULD_PASS_2}"
+CLIENT_EXEC_2a="/opt/openvpn-2.6-openssl/sbin/openvpn"
+CLIENT_CONF_2a="${CLIENT_CONF_2}"
+
+TEST_NAME_2b="t_server_null_client.sh-openvpn_26_mbedtls_tcp"
+SHOULD_PASS_2b="${SHOULD_PASS_2}"
+CLIENT_EXEC_2b="/opt/openvpn-2.6-mbedtls/sbin/openvpn"
+CLIENT_CONF_2b="${CLIENT_CONF_2}"
+
+TEST_NAME_2c="t_server_null_client.sh-openvpn_25_openssl_tcp"
+SHOULD_PASS_2c="${SHOULD_PASS_2}"
+CLIENT_EXEC_2c="/opt/openvpn-2.5-openssl/sbin/openvpn"
+CLIENT_CONF_2c="${CLIENT_CONF_BASE_25_TCP} --remote 127.0.0.1 1195 tcp --proto tcp"
+
+TEST_NAME_2d="t_server_null_client.sh-openvpn_25_mbedtls_tcp"
+SHOULD_PASS_2d="${SHOULD_PASS_2}"
+CLIENT_EXEC_2d="/opt/openvpn-2.5-mbedtls/sbin/openvpn"
+CLIENT_CONF_2d="${CLIENT_CONF_BASE_25_TCP} --remote 127.0.0.1 1195 tcp --proto tcp"
+
+TEST_NAME_3a="t_server_null_client.sh-openvpn_26_openssl_udp_fail"
+SHOULD_PASS_3a="${SHOULD_PASS_3}"
+CLIENT_EXEC_3a="/opt/openvpn-2.6-openssl/sbin/openvpn"
+CLIENT_CONF_3a="${CLIENT_CONF_3}"
+
+TEST_NAME_3b="t_server_null_client.sh-openvpn_26_mbedtls_udp_fail"
+SHOULD_PASS_3b="${SHOULD_PASS_3}"
+CLIENT_EXEC_3b="/opt/openvpn-2.6-mbedtls/sbin/openvpn"
+CLIENT_CONF_3b="${CLIENT_CONF_3}"
+
+TEST_NAME_3c="t_server_null_client.sh-openvpn_25_openssl_udp_fail"
+SHOULD_PASS_3c="${SHOULD_PASS_3}"
+CLIENT_EXEC_3c="/opt/openvpn-2.5-openssl/sbin/openvpn"
+CLIENT_CONF_3c="${CLIENT_CONF_3}"
+
+TEST_NAME_3d="t_server_null_client.sh-openvpn_25_mbedtls_udp_fail"
+SHOULD_PASS_3d="${SHOULD_PASS_3}"
+CLIENT_EXEC_3d="/opt/openvpn-2.5-mbedtls/sbin/openvpn"
+CLIENT_CONF_3d="${CLIENT_CONF_3}"

@@ -1,0 +1,5 @@
+ARG IMAGE=debian:12
+ARG DEPS_SH=install-openvpn-build-deps-ubuntu.sh
+ARG MY_NAME="buildbot-worker-debian-12-openvpn-legacy"
+ARG PIP_INSTALL_OPTS="--break-system-packages"
+ARG MY_VERSION="v1.0.0"

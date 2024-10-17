@@ -77,6 +77,10 @@ Buildbot master should now be listening on port 8010.
 * Server tests with t_server_null.sh (see OpenVPN Git repository)
 * Unix connectivity tests using t_client.sh (see OpenVPN Git repository)
 * Native Windows builds using MSVC to (cross-)compile for x86, x64 and arm64 plus MSI packaging and signing. Not actively tested.
+* Server tests using t_server_null.sh
+    * Git master client -> Git master servers
+    * Git release/2.6 client -> Git master servers
+    * Git release/2.5 client -> Git master servers
 * Debian/Ubuntu packaging
 
 ## openvpn3

@@ -1,0 +1,2 @@
+# This file gets overwritten in Dockerfile.suffix. It's main purpose in life is
+# to enable better reuse of Docker layers.

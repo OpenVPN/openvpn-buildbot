@@ -1,0 +1,3 @@
+BUILDMASTER=buildmaster
+WORKERNAME=debian-12-openvpn-legacy
+WORKERPASS=vagrant
