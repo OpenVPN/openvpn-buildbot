@@ -15,10 +15,14 @@ RUN set -ex; \
 # Install buildbot
 ARG MY_NAME
 ARG PIP_INSTALL_OPTS
-COPY scripts/install-buildbot.sh t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
+COPY scripts/install-lwipovpn.sh scripts/install-buildbot.sh t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
 RUN set -ex; \
     /buildbot/install-buildbot.sh; \
     rm -f /buildbot/install-buildbot.sh
+
+RUN set -ex; \
+    /buildbot/install-lwipovpn.sh; \
+    rm -f /buildbot/install-lwipovpn.sh
 
 COPY buildbot.tac /buildbot/
 RUN mkdir -p /home/buildbot
