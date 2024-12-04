@@ -77,7 +77,7 @@ python3-wheel \
 uncrustify \
 uuid-dev
 
-if [ "${INSTALL_MINGW:-false}" = "true" ]; then
+if [ "${INSTALL_MINGW:-false}" = "true" ] && lscpu|grep -E '^Architecture:[[:space:]]*x86_64$'; then
   # MingW + vcpkg
   $APT_INSTALL \
   man2html-base \
