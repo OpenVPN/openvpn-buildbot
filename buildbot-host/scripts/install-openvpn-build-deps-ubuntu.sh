@@ -17,6 +17,7 @@ autoconf-archive \
 automake \
 build-essential \
 ccache \
+clang \
 cmake \
 curl \
 debhelper \
@@ -101,6 +102,9 @@ fi
 
 # Only for some distros
 $APT_INSTALL systemd-dev || true
+
+# Only needed on Ubuntu 24.04 for clang builds and may freely fail elsewhere
+$APT_INSTALL libclang-rt-18-dev || true
 
 # policykit-1 is not available in more recent operating systems
 $APT_INSTALL policykit-1 || $APT_INSTALL polkitd pkexec
