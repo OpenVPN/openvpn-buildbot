@@ -27,10 +27,11 @@ libcap-ng-devel \
 libcmocka-devel \
 liblz4-devel \
 libnl3-devel \
-libxml2-devel \
+libpcap-devel \
 libtool \
 libselinux-devel \
 libuuid-devel \
+libxml2-devel \
 lzo-devel \
 make \
 mbedtls-devel \

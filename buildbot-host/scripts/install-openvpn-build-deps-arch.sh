@@ -28,6 +28,7 @@ jsoncpp \
 libcap \
 libcap-ng \
 libnl \
+libpcap \
 libtool \
 linux-headers \
 lz4 \

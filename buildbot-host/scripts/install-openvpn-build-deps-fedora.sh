@@ -25,6 +25,7 @@ libcap-devel \
 libcap-ng-devel \
 libcmocka-devel \
 libnl3-devel \
+libpcap-devel \
 libtool \
 libuuid-devel \
 libxml2 \

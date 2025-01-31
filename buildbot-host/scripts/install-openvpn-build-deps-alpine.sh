@@ -21,6 +21,7 @@ iproute2 \
 jsoncpp-dev \
 libcap-ng-dev \
 libnl3-dev \
+libpcap-dev \
 libtool \
 libuuid \
 libxml2-dev \
@@ -33,14 +34,14 @@ make \
 mbedtls-dev \
 meson \
 net-tools \
+opensc-dev \
+openssh-client \
+openssl-dev \
 pkgconf \
 procps \
 protobuf \
 protobuf-dev \
 protobuf-c-dev \
-opensc-dev \
-openssh-client \
-openssl-dev \
 python3 \
 python3-dev \
 py3-dbus \
