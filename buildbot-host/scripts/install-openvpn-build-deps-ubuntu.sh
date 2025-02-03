@@ -49,6 +49,7 @@ liblzo2-dev \
 libmbedtls-dev \
 libnl-genl-3-dev \
 libpam-dev \
+libpcap-dev \
 libp11-kit-dev \
 libpkcs11-helper-dev \
 libssl-dev \
