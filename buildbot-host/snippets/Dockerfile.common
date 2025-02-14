@@ -3,10 +3,13 @@ LABEL maintainer="OpenVPN Community Project"
 USER root
 WORKDIR /buildbot
 
+ENV ANDROID_HOME=/opt/android
+
 # Install build dependencies for OpenVPN
 RUN mkdir -p /buildbot
 ARG DEPS_SH
 ARG INSTALL_MINGW
+ARG INSTALL_ANDROID_NDK
 COPY scripts/${DEPS_SH} /buildbot/
 RUN set -ex; \
     /buildbot/${DEPS_SH}; \

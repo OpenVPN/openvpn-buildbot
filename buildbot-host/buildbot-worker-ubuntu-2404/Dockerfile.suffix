@@ -1,2 +1,4 @@
 ENV VCPKG_ROOT=/opt/vcpkg
 ENV VCPKG_DEFAULT_BINARY_CACHE=/home/buildbot/vcpkg/cache
+ENV ANDROID_NDK_HOME=/opt/android/ndk-bundle
+ENV ANDROID_NDK_ROOT=/opt/android/ndk-bundle

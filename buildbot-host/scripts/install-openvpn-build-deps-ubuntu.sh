@@ -79,7 +79,13 @@ python3-wheel \
 uncrustify \
 uuid-dev
 
-if [ "${INSTALL_MINGW:-false}" = "true" ] && lscpu|grep -E '^Architecture:[[:space:]]*x86_64$'; then
+NEED_VCPKG=false
+IS_X86_64=false
+if lscpu|grep -E '^Architecture:[[:space:]]*x86_64$'; then
+  IS_X86_64=true
+fi
+
+if [ "${INSTALL_MINGW:-false}" = "true" ] && $IS_X86_64; then
   # MingW + vcpkg
   $APT_INSTALL \
   man2html-base \
@@ -88,10 +94,7 @@ if [ "${INSTALL_MINGW:-false}" = "true" ] && lscpu|grep -E '^Architecture:[[:spa
   unzip \
   zip
 
-  cd /opt
-  git clone https://github.com/microsoft/vcpkg
-  cd vcpkg
-  ./bootstrap-vcpkg.sh
+  NEED_VCPKG=true
 
   $APT_INSTALL wget software-properties-common
   wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
@@ -99,6 +102,27 @@ if [ "${INSTALL_MINGW:-false}" = "true" ] && lscpu|grep -E '^Architecture:[[:spa
   rm -f packages-microsoft-prod.deb
   apt-get update
   $APT_INSTALL powershell
+fi
+
+if [ "${INSTALL_ANDROID_NDK:-false}" = "true" ] && $IS_X86_64; then
+  $APT_INSTALL default-jdk-headless
+  mkdir -p $ANDROID_HOME/cmdline-tools/latest
+  curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip >/commandlinetools-linux-latest.zip
+  (cd $ANDROID_HOME/cmdline-tools/ && unzip /commandlinetools-linux-latest.zip)
+  cp -r $ANDROID_HOME/cmdline-tools/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
+  yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+  $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
+  $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install ndk-bundle platform-tools tools "platforms;android-34" "build-tools;34.0.0"
+  rm -f /commandlinetools-linux-latest.zip
+
+  NEED_VCPKG=true
+fi
+
+if $NEED_VCPKG; then
+  cd /opt
+  git clone https://github.com/microsoft/vcpkg
+  cd vcpkg
+  ./bootstrap-vcpkg.sh
 fi
 
 # Only for some distros
