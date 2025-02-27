@@ -3,6 +3,7 @@ LABEL maintainer="OpenVPN Community Project"
 USER root
 WORKDIR /buildbot
 
+ENV BUILDBOT_BASEDIR=/build
 ENV ANDROID_HOME=/opt/android
 
 # Install build dependencies for OpenVPN

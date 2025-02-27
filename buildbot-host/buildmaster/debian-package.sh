@@ -27,6 +27,7 @@ if [ "$WORKERNAME" = "" ] || [ "$TBV" = "" ] || [ "$SV" = "" ]; then
   exit 1
 fi
 
+rm -fr openvpn-$TBV openvpn-$SV
 tar -xf openvpn-$TBV.tar.gz
 mv openvpn-$TBV.tar.gz openvpn_$SV.orig.tar.gz
 mv openvpn-$TBV openvpn-$SV
