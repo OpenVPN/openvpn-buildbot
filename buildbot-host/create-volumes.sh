@@ -14,4 +14,3 @@ for DOCKERFILE in `find -maxdepth 2 -type f -regextype egrep -regex '.*/(Dockerf
         docker volume create $DIR
     fi
 done
-

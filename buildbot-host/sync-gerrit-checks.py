@@ -72,9 +72,12 @@ def sync_checks(checks, builders, args, auth):
             "blocking": [],
         }
         rc = requests.post(
-            f"{args.gerrit}/a/plugins/checks/checkers/buildbot:{check}", json=check_data, auth=auth
+            f"{args.gerrit}/a/plugins/checks/checkers/buildbot:{check}",
+            json=check_data,
+            auth=auth,
         )
         rc.raise_for_status()
+
 
 def main():
     parser = argparse.ArgumentParser(

@@ -85,8 +85,8 @@ OPENVPN_BASE_P2P="..."
 #
 # now define the individual tests - all variables suffixed with _1, _2 etc
 # will be used in test run "1", "2", etc.
-# 
-# if something is not defined here, the "generic" variable without 
+#
+# if something is not defined here, the "generic" variable without
 # suffix will be used
 #
 # Test 1: TCP / p2mp tun
@@ -98,7 +98,7 @@ PING6_HOSTS_1="fd00:abcd:194:1::1 fd00:abcd:194:0::1"
 
 #
 # Test 1a: TCP / IPv6 / p2mp tun
-# 
+#
 # with --server-poll-timeout, just to ensure it is still allowed in TLS mode
 
 RUN_TITLE_1a="tcp6 / p2pm / top net30"
@@ -274,14 +274,14 @@ PING4_HOSTS_4="10.194.4.1 10.194.0.1"
 PING6_HOSTS_4="fd00:abcd:194:4::1 fd00:abcd:194:0::1"
 
 # Test 4a: UDP / p2mp tap3 / topo subnet
-# 
+#
 RUN_TITLE_4a="udp6 / p2pm / tap3 / topo subnet"
 OPENVPN_CONF_4a="$OPENVPN_BASE_P2MP --dev tap3 --proto udp6 --remote $REMOTE --port 51196 --topology subnet"
 PING4_HOSTS_4a="$PING4_HOSTS_4"
 PING6_HOSTS_4a="$PING6_HOSTS_4"
 
 # Test 4b: UDP / p2mp tap / ipv6-only / MAC-Addr
-# 
+#
 RUN_TITLE_4b="udp / p2pm / tap / ipv6-only (pull-filter) / MAC-Addr"
 OPENVPN_CONF_4b="$OPENVPN_BASE_P2MP --dev tap --proto udp --remote $REMOTE --port 51196 --pull-filter accept ifconfig- --pull-filter ignore ifconfig --lladdr 00:aa:bb:c0:ff:ee"
 PING4_HOSTS_4b=

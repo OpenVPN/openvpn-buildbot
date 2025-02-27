@@ -30,4 +30,3 @@ install_openvpn 2.5 mbedtls
 install_openvpn 2.5 openssl
 install_openvpn 2.6 mbedtls
 install_openvpn 2.6 openssl
-

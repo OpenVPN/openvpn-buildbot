@@ -38,4 +38,3 @@ Set-Service -Name WinRM -StartupType Automatic
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" new action=allow localip=any remoteip=any
 Start-Service -Name WinRM
 </powershell>
-
