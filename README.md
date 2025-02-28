@@ -8,7 +8,7 @@ This is CI/CD system built on top of Buildbot. Here's an overview of the design
 This buildbot system can run on baremetal or virtualized. It depends on the
 Docker Engine API for spinning up latent (on-demand) Buildbot workers. The
 system should be mostly operating system agnostic, except for the provisioning
-part which is currently Ubuntu-specific. 
+part which is currently Ubuntu-specific.
 
 This system as a whole has been tested on:
 
