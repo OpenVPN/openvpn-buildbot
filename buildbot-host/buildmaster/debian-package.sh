@@ -28,6 +28,7 @@ if [ "$WORKERNAME" = "" ] || [ "$TBV" = "" ] || [ "$SV" = "" ]; then
 fi
 
 rm -fr openvpn-$TBV openvpn-$SV
+rm -f openvpn*deb openvpn*.dsc openvpn*.buildinfo openvpn*.changes openvpn*.orig.tar.gz
 tar -xf openvpn-$TBV.tar.gz
 mv openvpn-$TBV.tar.gz openvpn_$SV.orig.tar.gz
 mv openvpn-$TBV openvpn-$SV
