@@ -1,4 +1,0 @@
-ARG IMAGE=fedora:40
-ARG DEPS_SH=install-openvpn-build-deps-fedora.sh
-ARG MY_NAME="buildbot-worker-fedora-40"
-ARG MY_VERSION="v1.1.0"
