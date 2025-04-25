@@ -132,10 +132,12 @@ $APT_INSTALL systemd-dev || true
 $APT_INSTALL libclang-rt-18-dev || true
 
 # policykit-1 is not available in more recent operating systems
+# Can be removed once Debian 11 support is removed
 $APT_INSTALL policykit-1 || $APT_INSTALL polkitd pkexec
 
-# Install kernel headers for building ovpn-dco. Determining the correct package
-# name is challenging, so just try which ones install and which ones don't
+# Install kernel headers for building ovpn-dco.
+# -generic is the Ubuntu variant, -amd64 the Debian variant.
+# We just try both.
 $APT_INSTALL linux-headers-generic || $APT_INSTALL linux-headers-amd64
 
 # Hack to ensure that kernel headers can be found from a predictable place

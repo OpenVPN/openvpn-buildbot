@@ -1,4 +1,0 @@
-ARG IMAGE=ubuntu:20.04
-ARG DEPS_SH=install-openvpn-build-deps-ubuntu.sh
-ARG MY_NAME="buildbot-worker-ubuntu-2004"
-ARG MY_VERSION="v1.0.3"
