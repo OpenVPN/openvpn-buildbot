@@ -128,8 +128,8 @@ fi
 # Only for some distros
 $APT_INSTALL systemd-dev || true
 
-# Only needed on Ubuntu 24.04 for clang builds and may freely fail elsewhere
-$APT_INSTALL libclang-rt-18-dev || true
+# Only needed on Ubuntu 24.04+ for clang builds and may freely fail elsewhere
+$APT_INSTALL libclang-rt-dev || true
 
 # policykit-1 is not available in more recent operating systems
 # Can be removed once Debian 11 support is removed
