@@ -39,7 +39,7 @@ build {
     inline = ["C:/Windows/Temp/scripts/pwsh.ps1"]
   }
   provisioner "powershell" {
-    inline = ["C:/Windows/Temp/scripts/vsbuildtools.ps1 -version 2022"]
+    inline = ["C:/Windows/Temp/scripts/vsbuildtools.ps1"]
   }
   provisioner "powershell" {
     inline = ["C:/Windows/Temp/scripts/build-deps-unified.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild -openvpn_build_ref release/2.6 -debug"]
