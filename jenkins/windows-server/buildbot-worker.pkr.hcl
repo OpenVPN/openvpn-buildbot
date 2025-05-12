@@ -46,6 +46,9 @@ build {
     inline = ["C:/Windows/Temp/scripts/vcpkg.ps1 -workdir C:\\Buildbot"]
   }
   provisioner "powershell" {
+    inline = ["C:/Windows/Temp/scripts/pwsh.ps1"]
+  }
+  provisioner "powershell" {
     inline = ["C:/Windows/Temp/scripts/vsbuildtools.ps1"]
   }
   provisioner "powershell" {
