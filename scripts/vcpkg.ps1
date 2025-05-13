@@ -5,6 +5,10 @@ if ($debug -eq $true) {
   . $PSScriptRoot\ps_support.ps1
 }
 
+# Required for vcpkg (it will download it automatically, but avoid that overhead)
+Write-Host "Installing 7zip"
+& choco.exe install -y 7zip
+
 # Required for S3 binary caching
 Write-Host "Installing and setting up aws CLI"
 
