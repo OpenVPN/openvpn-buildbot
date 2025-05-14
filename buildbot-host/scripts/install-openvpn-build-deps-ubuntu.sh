@@ -42,6 +42,7 @@ libdpkg-perl \
 libprotobuf-dev \
 libfakeroot \
 libfile-stripnondeterminism-perl \
+libfmt-dev \
 libglib2.0-dev \
 libjsoncpp-dev \
 liblz4-dev \

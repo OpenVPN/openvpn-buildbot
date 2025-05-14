@@ -18,6 +18,7 @@ cmake \
 cmocka \
 curl \
 dbus-python \
+fmt \
 fping \
 gcc \
 git \

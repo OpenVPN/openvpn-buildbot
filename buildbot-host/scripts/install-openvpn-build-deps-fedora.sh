@@ -12,6 +12,7 @@ ccache \
 cmake \
 crypto-policies-scripts \
 dbus-devel \
+fmt-devel \
 fping \
 gcc \
 gcc-c++ \
