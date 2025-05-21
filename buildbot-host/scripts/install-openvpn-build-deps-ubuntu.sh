@@ -23,12 +23,14 @@ curl \
 debhelper \
 dh-autoreconf \
 dh-strip-nondeterminism \
+doxygen \
 dpkg-dev \
 dwz \
 fakeroot \
 fping \
 g++ \
 git \
+graphviz \
 groff-base \
 intltool-debian \
 iproute2 \
