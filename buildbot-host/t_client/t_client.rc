@@ -44,8 +44,8 @@ HTTP_PROXY="community-test-proxy.openvpn.in 8080"
 #
 # tests to run (list suffixes for config stanzas below)
 #
-TEST_RUN_LIST="1 1a 1b 1c 1d 1e 1f 1g 1h 1i 2 2a 2b 2c 2d 2e 2f 3 4 4a 4b 5 6"
-#TEST_RUN_LIST="1 1a 1b 1c 1d 1e 1f 1g 1h 1i 2 2a 2b 2c 2d 2e 2f 3 4 4a 4b 5 6 8 8a 9 9a 9b 9x 11 11a"
+TEST_RUN_LIST="1 1a 1b 1c 1d 1e 1f 1g 1h 1i 2 2a 2b 2c 2d 2e 2f 2k 2l 2m 3 4 4a 4b 5 6"
+#TEST_RUN_LIST="1 1a 1b 1c 1d 1e 1f 1g 1h 1i 2 2a 2b 2c 2d 2e 2f 2k 2l 2m 3 4 4a 4b 5 6 8 8a 9 9a 9b 9x 11 11a"
 #TEST_RUN_LIST="1 1a 2 3"
 #TEST_RUN_LIST="1a"
 #TEST_RUN_LIST="1b 1c 1d"
@@ -56,6 +56,7 @@ TEST_RUN_LIST="1 1a 1b 1c 1d 1e 1f 1g 1h 1i 2 2a 2b 2c 2d 2e 2f 3 4 4a 4b 5 6"
 #TEST_RUN_LIST="2 2a"
 #TEST_RUN_LIST="2d"
 #TEST_RUN_LIST="2d 2e 4 4b"	# normal / v6-only
+#TEST_RUN_LIST="2k 2l 2m"	# --dns/--dhcp
 #TEST_RUN_LIST="2e"
 #TEST_RUN_LIST="4 4a 4b"	# TAP tests
 #TEST_RUN_LIST="6"		# --fragment
@@ -258,6 +259,29 @@ OPENVPN_CONF_2f="$OPENVPN_BASE_P2MP --dev tun --proto udp --remote $REMOTE --por
 PING4_HOSTS_2f=
 PING6_HOSTS_2f="$PING6_HOSTS_2"
 
+# Test 2k: UDP / p2mp tun / --dhcp
+#
+RUN_TITLE_2k="udp / p2pm / top net30 / want dns(dhcp)"
+CHECK_SKIP_2k="test -f ${top_srcdir}/distro/dns-scripts/Makefile.am && ! test -f /.dockerenv"
+OPENVPN_CONF_2k="$OPENVPN_BASE_P2MP --dev tun --proto udp --remote $REMOTE --port 51194 --push-peer-info --setenv UV_WANT_DNS dhcp --dns-updown ../distro/dns-scripts/dns-updown --script-security 2"
+PING4_HOSTS_2k="$PING4_HOSTS_2 ping4.open.vpn"
+PING6_HOSTS_2k="$PING6_HOSTS_2 ping6.open.vpn"
+
+# Test 2l: UDP / p2mp tun / --dns
+#
+RUN_TITLE_2l="udp / p2pm / top net30 / want dns(dns)"
+CHECK_SKIP_2l="test -f ${top_srcdir}/distro/dns-scripts/Makefile.am && ! test -f /.dockerenv"
+OPENVPN_CONF_2l="$OPENVPN_BASE_P2MP --dev tun --proto udp --remote $REMOTE --port 51194 --push-peer-info --setenv UV_WANT_DNS dns --dns-updown ../distro/dns-scripts/dns-updown --script-security 2"
+PING4_HOSTS_2l="$PING4_HOSTS_2 ping4.open.vpn"
+PING6_HOSTS_2l="$PING6_HOSTS_2 ping6.open.vpn"
+
+# Test 2m: UDP / p2mp tun / --dns / --user nobody
+#
+RUN_TITLE_2m="udp / ... / want dns(dns) / user nobody"
+CHECK_SKIP_2m="test -f ${top_srcdir}/distro/dns-scripts/Makefile.am && ! test -f /.dockerenv"
+OPENVPN_CONF_2m="$OPENVPN_CONF_2l --user nobody"
+PING4_HOSTS_2m="$PING4_HOSTS_2l"
+PING6_HOSTS_2m="$PING6_HOSTS_2l"
 
 # Test 3: UDP / p2mp tun, topology subnet
 #
