@@ -143,6 +143,8 @@ $APT_INSTALL policykit-1 || $APT_INSTALL polkitd pkexec
 # We just try both.
 $APT_INSTALL linux-headers-generic || $APT_INSTALL linux-headers-amd64
 
+pip3 --no-cache-dir install ${PIP_INSTALL_OPTS:-} pre-commit
+
 # Hack to ensure that kernel headers can be found from a predictable place
 ln -s /lib/modules/$(ls /lib/modules|head -n 1)/build /buildbot/kernel-headers
 

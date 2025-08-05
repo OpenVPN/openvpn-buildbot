@@ -11,6 +11,7 @@ RUN mkdir -p /buildbot
 ARG DEPS_SH
 ARG INSTALL_MINGW
 ARG INSTALL_ANDROID_NDK
+ARG PIP_INSTALL_OPTS
 COPY scripts/${DEPS_SH} /buildbot/
 RUN set -ex; \
     /buildbot/${DEPS_SH}; \
@@ -18,7 +19,6 @@ RUN set -ex; \
 
 # Install buildbot
 ARG MY_NAME
-ARG PIP_INSTALL_OPTS
 COPY scripts/install-lwipovpn.sh scripts/install-buildbot.sh t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
 RUN set -ex; \
     /buildbot/install-buildbot.sh; \
