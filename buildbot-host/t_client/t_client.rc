@@ -70,13 +70,18 @@ if [ -n "$TEST_RUN_OVERRIDE" ] ; then
     TEST_RUN_LIST="$TEST_RUN_OVERRIDE"
 fi
 
+# Allow to select which compression to use for data channel
+COMP_ARGS="--comp-lzo"
+if [ -n "$TCLIENT_NOCOMP" ] ; then
+    COMP_ARGS="--setenv UV_NOCOMP 1 --push-peer-info"
+fi
+
 #
 # base confic that is the same for all the p2mp test runs
 #
 OPENVPN_BASE_P2MP="--client --tls-cert-profile insecure --ca $CA_CERT \
 	--cert $CLIENT_CERT --key $CLIENT_KEY \
-	--remote-cert-tls server --comp-lzo --verb 3 $OPENVPN_EXTRA_CF"
-#	--remote-cert-tls server --nobind --comp-lzo --verb 3
+	--remote-cert-tls server --verb 3 $COMP_ARGS $OPENVPN_EXTRA_CF"
 
 # base config for p2p tests
 #
