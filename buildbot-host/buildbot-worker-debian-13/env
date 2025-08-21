@@ -1,0 +1,3 @@
+BUILDMASTER=buildmaster
+WORKERNAME=debian-13
+WORKERPASS=vagrant
