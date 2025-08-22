@@ -202,7 +202,7 @@ PING6_HOSTS_1x="fd00:abcd:204:1::1 fd00:abcd:204:0::1"
 #
 RUN_TITLE_2="udp4 / p2pm / top net30"
 OPENVPN_CONF_2="$OPENVPN_BASE_P2MP --dev tun --proto udp4 --remote $REMOTE --port 51194"
-PING4_HOSTS_2="10.194.2.1 10.194.0.1"
+PING4_HOSTS_2="10.194.20.1 10.194.0.1"
 PING6_HOSTS_2="fd00:abcd:194:2::1 fd00:abcd:194:0::1"
 
 # Test 2a: UDP / p2mp tun, no v4-routes, no NCP
