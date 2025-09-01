@@ -51,6 +51,7 @@ python3-setuptools \
 python3-wheel \
 systemd-devel \
 tinyxml2-devel \
+which \
 xxhash-devel
 
 # Hack to ensure that kernel headers can be found from a predictable place
