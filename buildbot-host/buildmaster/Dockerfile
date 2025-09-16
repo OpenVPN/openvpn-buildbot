@@ -27,12 +27,12 @@ COPY buildmaster/worker*.ini $BASEDIR/
 COPY buildmaster/debian-*.sh $BASEDIR/
 COPY buildmaster/debian-*.py $BASEDIR/
 COPY buildmaster/debian-changelog.tmpl $BASEDIR/
+COPY buildmaster/*.bat $BASEDIR/
+COPY scripts/ensure-tun-is-present.sh $BASEDIR
 ADD buildmaster/openvpn $BASEDIR/openvpn
 ADD buildmaster/openvpn3 $BASEDIR/openvpn3
 ADD buildmaster/openvpn3-linux $BASEDIR/openvpn3-linux
 ADD buildmaster/ovpn-dco $BASEDIR/ovpn-dco
-
-COPY scripts/ensure-tun-is-present.sh $BASEDIR
 
 WORKDIR $BASEDIR
 
