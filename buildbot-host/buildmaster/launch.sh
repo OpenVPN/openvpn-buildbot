@@ -19,3 +19,8 @@ docker container rm buildmaster
 DOCKER_OPTS="${DOCKER_OPTS:--d}"
 
 docker container run $DOCKER_OPTS --name buildmaster --restart unless-stopped --volume /var/lib/repos:/var/lib/repos --mount source=buildmaster,target=/var/lib/buildbot/masters/default/persistent --network buildbot-net --publish 8010:8010 --publish 9989:9989 openvpn_community/buildmaster:$TAG
+
+sleep 3
+
+echo startup logs:
+docker logs buildmaster
