@@ -30,6 +30,7 @@ fakeroot \
 fping \
 g++ \
 git \
+gnutls-bin \
 graphviz \
 groff-base \
 intltool-debian \
@@ -79,6 +80,7 @@ python3-pip \
 python3-roman \
 python3-setuptools \
 python3-wheel \
+softhsm2 \
 uncrustify \
 uuid-dev
 
