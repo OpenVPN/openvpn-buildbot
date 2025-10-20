@@ -101,7 +101,7 @@ if [ "${INSTALL_MINGW:-false}" = "true" ] && $IS_X86_64; then
 
   NEED_VCPKG=true
 
-  $APT_INSTALL wget software-properties-common
+  $APT_INSTALL wget lsb-release
   wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
   dpkg -i packages-microsoft-prod.deb
   rm -f packages-microsoft-prod.deb
