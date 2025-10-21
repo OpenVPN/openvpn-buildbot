@@ -1,5 +1,5 @@
-ARG IMAGE=ubuntu:25.04
+ARG IMAGE=ubuntu:25.10
 ARG DEPS_SH=install-openvpn-build-deps-ubuntu.sh
-ARG MY_NAME="buildbot-worker-ubuntu-2504"
+ARG MY_NAME="buildbot-worker-ubuntu-2510"
 ARG PIP_INSTALL_OPTS="--break-system-packages"
 ARG MY_VERSION="v1.0.0"
