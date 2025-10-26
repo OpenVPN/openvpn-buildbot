@@ -37,8 +37,8 @@ fi
 REMOTE=conn-test-server.openvpn.org
 REMOTE4=199.102.77.82
 
-SOCKS_PROXY="community-test-proxy.openvpn.in 1080"
-HTTP_PROXY="community-test-proxy.openvpn.in 8080"
+SOCKS_PROXY="test-proxy.community.aws.openvpn.in 1080"
+HTTP_PROXY="test-proxy.community.aws.openvpn.in 8080"
 
 #REMOTE=gentoo.ov.greenie.net
 #
