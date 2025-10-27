@@ -173,7 +173,7 @@ PING6_HOSTS_1g="$PING6_HOSTS_1"
 #
 
 RUN_TITLE_1h="tcp4 / http proxy auto noauth / p2pm / top net30"
-OPENVPN_CONF_1h="$OPENVPN_BASE_P2MP --dev tun3 --proto tcp4-client --remote $REMOTE --port 51194 --http-proxy community-test-proxy.openvpn.in 8080 auto"
+OPENVPN_CONF_1h="$OPENVPN_BASE_P2MP --dev tun3 --proto tcp4-client --remote $REMOTE --port 51194 --http-proxy $HTTP_PROXY auto"
 PING4_HOSTS_1h="$PING4_HOSTS_1"
 PING6_HOSTS_1h="$PING6_HOSTS_1"
 
