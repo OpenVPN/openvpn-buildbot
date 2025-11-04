@@ -46,7 +46,10 @@ TAG=`grep MY_VERSION $DIR/Dockerfile|awk 'BEGIN { FS = "\"" }; { print $2 }'`
 
 # Remove image with same name and tag, if found
 docker buildx build --load --pull -f $DIR/Dockerfile --rm=true -t openvpn_community/$IMAGE:$TAG .
+ret=$?
 
 if [ "${DYNAMIC_DOCKERFILE}" = "yes" ]; then
   rm -f $DIR/Dockerfile
 fi
+
+exit $ret
