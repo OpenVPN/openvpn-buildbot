@@ -4,8 +4,8 @@ from twisted.application import service
 from buildbot.master import BuildMaster
 
 basedir = '/var/lib/buildbot/masters/default'
-rotateLength = 10000000
-maxRotatedFiles = 10
+rotateLength = 100000000
+maxRotatedFiles = 5
 configfile = 'master.cfg'
 
 # Default umask for server

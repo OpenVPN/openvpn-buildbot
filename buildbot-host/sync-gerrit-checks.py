@@ -27,6 +27,8 @@ def relevant_builder(name):
         return False
     if re.search(r"ovpn-dco", name):
         return False
+    if re.search(r"^__", name):
+        return False
     return True
 
 
