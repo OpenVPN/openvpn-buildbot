@@ -1,0 +1,3 @@
+BUILDMASTER=buildmaster
+WORKERNAME=opensuse-leap-16
+WORKERPASS=vagrant
