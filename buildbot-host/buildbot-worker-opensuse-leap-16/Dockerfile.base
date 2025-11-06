@@ -1,0 +1,4 @@
+ARG IMAGE=opensuse/leap:16.0
+ARG DEPS_SH=install-openvpn-build-deps-opensuse-leap.sh
+ARG MY_NAME="buildbot-worker-opensuse-leap-16"
+ARG MY_VERSION="v1.0.0"
