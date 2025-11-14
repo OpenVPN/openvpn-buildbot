@@ -1,6 +1,6 @@
 ARG MY_NAME="buildmaster"
-ARG MY_VERSION="v2.8.0"
-ARG IMAGE=buildbot/buildbot-master:v3.11.9
+ARG MY_VERSION="v3.0.0"
+ARG IMAGE=buildbot/buildbot-master:v4.3.0
 
 FROM $IMAGE
 
@@ -13,7 +13,7 @@ ENV BASEDIR=/var/lib/buildbot/masters/default
 RUN mkdir -p $BASEDIR
 
 # Required for latent docker buildslaves
-RUN . /buildbot_venv/bin/activate && pip install treq docker==5.0.3 || false
+RUN . /buildbot_venv/bin/activate && pip install treq docker || false
 # Required for latent EC2 buildslaves
 RUN . /buildbot_venv/bin/activate && pip install boto3 || false
 RUN set -ex; \
