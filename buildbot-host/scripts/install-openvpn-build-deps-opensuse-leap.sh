@@ -11,6 +11,7 @@ bzip2 \
 cmake \
 ccache \
 curl \
+fmt-devel \
 fping \
 gcc \
 gcc-c++ \
