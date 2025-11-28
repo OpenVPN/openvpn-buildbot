@@ -4,7 +4,7 @@
 #
 set -ex
 
-BUILDBOT_VERSION=4.3.0
+BUILDBOT_VERSION=${BUILDBOT_VERSION:-4.3.0}
 
 # Upgrading pip may or may not work. On Ubuntu 24.04 it may fail with
 #
