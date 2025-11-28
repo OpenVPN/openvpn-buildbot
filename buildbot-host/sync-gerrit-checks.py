@@ -36,7 +36,8 @@ def get_builders(args):
     rm = requests.get(f"{args.buildbot}/api/v2/masters")
     print(rm.url)
     masters = [m for m in rm.json()["masters"] if m["active"]]
-    assert len(masters) == 1
+    # assert len(masters) == 1
+    masters = sorted(masters, key=lambda master: master["last_active"], reverse=True)
     master_id = masters[0]["masterid"]
     rb = requests.get(f"{args.buildbot}/api/v2/masters/{master_id}/builders")
     print(rb.url)
