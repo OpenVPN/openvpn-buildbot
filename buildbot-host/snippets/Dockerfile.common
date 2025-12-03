@@ -19,6 +19,7 @@ RUN set -ex; \
 
 # Install buildbot
 ARG MY_NAME
+ARG BUILDBOT_VERSION
 COPY scripts/install-lwipovpn.sh scripts/install-buildbot.sh t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
 RUN set -ex; \
     /buildbot/install-buildbot.sh; \
