@@ -89,7 +89,7 @@ def main():
     )
     parser.add_argument("-g", "--gerrit", default="https://gerrit.openvpn.net")
     parser.add_argument(
-        "-b", "--buildbot", default="http://buildbot-host.openvpn.in:8010"
+        "-b", "--buildbot", default="http://buildbot.community.aws.openvpn.in:8010"
     )
     args = parser.parse_args()
 
