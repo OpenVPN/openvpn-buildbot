@@ -6,14 +6,15 @@ set -ex
 
 BUILDBOT_VERSION=${BUILDBOT_VERSION:-4.3.0}
 
-# Upgrading pip may or may not work. On Ubuntu 24.04 it may fail with
-#
-# "ERROR: Cannot uninstall pip 24.0, RECORD file not found. Hint: The package was installed by debian."
-#
-# Try and if it fails just keep on going
-#
-pip3 install $PIP_INSTALL_OPTS --upgrade pip || true
-pip --no-cache-dir install $PIP_INSTALL_OPTS twisted[tls]
-pip --no-cache-dir install $PIP_INSTALL_OPTS buildbot_worker==$BUILDBOT_VERSION
+virtualenv /buildbot_venv --python=python3
+ . /buildbot_venv/bin/activate
+
+pip install --upgrade pip
+pip --no-cache-dir install twisted[tls]
+pip --no-cache-dir install buildbot_worker==$BUILDBOT_VERSION
+
+# not directly related to buildbot, but we want to install it
+# into the venv, so easiests to put it here.
+pip --no-cache-dir install pre-commit
 
 useradd --create-home --home-dir=/var/lib/buildbot buildbot

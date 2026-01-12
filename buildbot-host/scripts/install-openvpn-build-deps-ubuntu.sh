@@ -82,7 +82,8 @@ python3-setuptools \
 python3-wheel \
 softhsm2 \
 uncrustify \
-uuid-dev
+uuid-dev \
+virtualenv
 
 NEED_VCPKG=false
 IS_X86_64=false
@@ -144,8 +145,6 @@ $APT_INSTALL policykit-1 || $APT_INSTALL polkitd pkexec
 # -generic is the Ubuntu variant, -amd64 the Debian variant.
 # We just try both.
 $APT_INSTALL linux-headers-generic || $APT_INSTALL linux-headers-amd64
-
-pip3 --no-cache-dir install ${PIP_INSTALL_OPTS:-} pre-commit
 
 # Hack to ensure that kernel headers can be found from a predictable place
 ln -s /lib/modules/$(ls /lib/modules|head -n 1)/build /buildbot/kernel-headers

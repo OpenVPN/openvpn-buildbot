@@ -11,7 +11,6 @@ RUN mkdir -p /buildbot
 ARG DEPS_SH
 ARG INSTALL_MINGW
 ARG INSTALL_ANDROID_NDK
-ARG PIP_INSTALL_OPTS
 COPY scripts/${DEPS_SH} /buildbot/
 RUN set -ex; \
     /buildbot/${DEPS_SH}; \
@@ -30,6 +29,7 @@ RUN set -ex; \
     rm -f /buildbot/install-lwipovpn.sh
 
 COPY buildbot.tac /buildbot/
+COPY start_agent.sh /buildbot/
 RUN mkdir -p /home/buildbot
 
-CMD ["twistd", "--pidfile=", "--nodaemon", "--python=buildbot.tac"]
+CMD ["/buildbot/start_agent.sh"]
