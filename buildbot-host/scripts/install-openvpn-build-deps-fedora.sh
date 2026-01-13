@@ -57,6 +57,7 @@ python3-wheel \
 selinux-policy-devel \
 systemd-devel \
 tinyxml2-devel \
+virtualenv \
 which \
 xxhash-devel \
 zlib-devel

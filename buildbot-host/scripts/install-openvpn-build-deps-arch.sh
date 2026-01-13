@@ -48,6 +48,7 @@ python \
 python-gobject \
 python-pip \
 python-setuptools \
+python-virtualenv \
 python-wheel \
 tinyxml2 \
 which \

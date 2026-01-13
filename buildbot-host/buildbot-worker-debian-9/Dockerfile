@@ -76,7 +76,8 @@ python3-pip \
 python3-roman \
 python3-setuptools \
 python3-wheel \
-uuid-dev
+uuid-dev \
+virtualenv
 
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -89,6 +90,7 @@ RUN set -ex; \
     rm -f /buildbot/install-buildbot.sh
 
 COPY buildbot.tac /buildbot/
+COPY start_agent.sh /buildbot/
 RUN mkdir -p /home/buildbot
 
-CMD ["twistd", "--pidfile=", "--nodaemon", "--python=buildbot.tac"]
+CMD ["/buildbot/start_agent.sh"]

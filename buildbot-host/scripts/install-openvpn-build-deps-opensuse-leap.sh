@@ -49,6 +49,7 @@ python3-Jinja2 \
 python3-pip \
 python3-pyOpenSSL \
 python3-setuptools \
+python3-virtualenv \
 python3-wheel \
 systemd-devel \
 tinyxml2-devel \

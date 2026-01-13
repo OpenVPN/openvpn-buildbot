@@ -49,6 +49,7 @@ py3-docutils \
 py3-pip \
 py3-roman \
 py3-setuptools \
+py3-virtualenv \
 py3-wheel \
 shadow \
 tinyxml2-dev

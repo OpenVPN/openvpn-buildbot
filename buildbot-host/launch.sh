@@ -17,8 +17,10 @@ if [ "$1" = "" ]; then
 fi
 
 # Get image name and version
-IMAGE=`grep MY_NAME $DIR/Dockerfile.base|awk 'BEGIN { FS = "\"" }; { print $2 }'`
-TAG=`grep MY_VERSION $DIR/Dockerfile.base|awk 'BEGIN { FS = "\"" }; { print $2 }'`
+DOCKERFILE=$DIR/Dockerfile.base
+[ ! -f $DIR/Dockerfile ] || DOCKERFILE=$DIR/Dockerfile
+IMAGE=`grep MY_NAME $DOCKERFILE|awk 'BEGIN { FS = "\"" }; { print $2 }'`
+TAG=`grep MY_VERSION $DOCKERFILE|awk 'BEGIN { FS = "\"" }; { print $2 }'`
 
 docker container stop $IMAGE
 docker container rm $IMAGE
