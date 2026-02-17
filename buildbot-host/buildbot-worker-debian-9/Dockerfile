@@ -84,13 +84,12 @@ RUN rm -rf /var/lib/apt/lists/*
 # Install buildbot
 ENV BUILDBOT_VERSION=3.11.9
 ARG MY_NAME
-COPY scripts/install-buildbot.sh t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
-RUN set -ex; \
-    /buildbot/install-buildbot.sh; \
-    rm -f /buildbot/install-buildbot.sh
+COPY t_client/*.crt t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
+RUN useradd --create-home --home-dir=/var/lib/buildbot buildbot
+RUN pip3 install -U pip && pip --no-cache-dir install twisted[tls] && pip --no-cache-dir install buildbot_worker==$BUILDBOT_VERSION
 
 COPY buildbot.tac /buildbot/
 COPY start_agent.sh /buildbot/
 RUN mkdir -p /home/buildbot
 
-CMD ["/buildbot/start_agent.sh"]
+CMD twistd --pidfile= --nodaemon --python=buildbot.tac
