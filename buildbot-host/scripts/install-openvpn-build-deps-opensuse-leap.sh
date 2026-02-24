@@ -23,6 +23,7 @@ hostname \
 iproute \
 jsoncpp-devel \
 kernel-devel \
+kernel-default-devel \
 libcap-devel \
 libcap-ng-devel \
 libcmocka-devel \
@@ -59,6 +60,6 @@ xxhash-devel
 # Hack to ensure that kernel headers can be found from a predictable place
 # Right now kernel headers are not usable with ovpn-dco, so this is here mostly
 # for documentation purposes.
-ln -s /usr/src/linux /buildbot/kernel-headers
+ln -s /usr/src/linux-*-obj/x86_64/default /buildbot/kernel-headers
 # openSUSE doesn't have fping6 symlink, t_client.sh can't deal
 ln -s /usr/sbin/fping /usr/sbin/fping6
