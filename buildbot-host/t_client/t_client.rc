@@ -10,9 +10,8 @@ if [ -z "$KEYBASE" ] ; then
     KEYBASE="/buildbot"
 fi
 
-CA_CERT="$KEYBASE/ca.crt"
-CLIENT_KEY="$KEYBASE/t_client.key"
-CLIENT_CERT="$KEYBASE/t_client.crt"
+CA_CERT=1
+INLINE_FILE="$KEYBASE/t_client.inline"
 
 # not required in docker
 #RUN_SUDO=sudo
@@ -79,8 +78,7 @@ fi
 #
 # base confic that is the same for all the p2mp test runs
 #
-OPENVPN_BASE_P2MP="--client --tls-cert-profile insecure --ca $CA_CERT \
-	--cert $CLIENT_CERT --key $CLIENT_KEY \
+OPENVPN_BASE_P2MP="--client --config $INLINE_FILE \
 	--remote-cert-tls server --verb 3 $COMP_ARGS $OPENVPN_EXTRA_CF"
 
 # base config for p2p tests
