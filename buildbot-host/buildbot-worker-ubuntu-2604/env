@@ -1,3 +1,3 @@
 BUILDMASTER=buildmaster
-WORKERNAME=ubuntu-2510
+WORKERNAME=ubuntu-2604
 WORKERPASS=vagrant
