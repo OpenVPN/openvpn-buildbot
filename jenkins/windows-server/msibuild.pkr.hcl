@@ -42,10 +42,7 @@ build {
     inline = ["C:/Windows/Temp/scripts/vsbuildtools.ps1"]
   }
   provisioner "powershell" {
-    inline = ["C:/Windows/Temp/scripts/build-deps-unified.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild -openvpn_build_ref release/2.6 -debug"]
-  }
-  provisioner "powershell" {
-    inline = ["C:/Windows/Temp/scripts/aws-cloudhsm.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild"]
+    inline = ["C:/Windows/Temp/scripts/build-deps-unified.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild -debug"]
   }
   provisioner "powershell" {
     inline = ["C:/Windows/Temp/scripts/jsign.ps1 -configfiles C:\\config -workdir C:\\buildbot\\msbuild"]
