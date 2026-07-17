@@ -112,14 +112,12 @@ fi
 
 if [ "${INSTALL_ANDROID_NDK:-false}" = "true" ] && $IS_X86_64; then
   $APT_INSTALL default-jdk-headless
-  mkdir -p $ANDROID_HOME/cmdline-tools/latest
-  curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip >/commandlinetools-linux-latest.zip
-  (cd $ANDROID_HOME/cmdline-tools/ && unzip /commandlinetools-linux-latest.zip)
-  cp -r $ANDROID_HOME/cmdline-tools/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
-  yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-  $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --update
-  $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install ndk-bundle platform-tools tools "platforms;android-34" "build-tools;34.0.0"
-  rm -f /commandlinetools-linux-latest.zip
+  curl -fsSL https://dl.google.com/android/repository/android-ndk-r29-linux.zip >/android-ndk.zip
+  mkdir -p "$ANDROID_HOME"
+  cd "$ANDROID_HOME"
+  unzip /android-ndk.zip
+  mv android-ndk-* "$ANDROID_NDK_ROOT"
+  rm -f /android-ndk.zip
 
   NEED_VCPKG=true
 fi
