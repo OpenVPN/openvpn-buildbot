@@ -2,7 +2,7 @@
 #
 set -ex
 
-zypper install -y \
+zypper install -y --force-resolution \
 asio-devel \
 autoconf \
 autoconf-archive \
