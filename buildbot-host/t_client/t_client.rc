@@ -21,7 +21,7 @@ INLINE_FILE="$KEYBASE/t_client.inline"
 SETUP_TIME_WAIT=20
 
 # override test ("make it fast!")
-FPING_EXTRA_ARGS="-C 5 -p 500"
+FPING_EXTRA_ARGS="-C 5 -p 600"
 
 # Load EXPECT_IFCONFIG* parameters from cache
 if [ -r "${top_srcdir}/t_client_ips.rc" ]; then
