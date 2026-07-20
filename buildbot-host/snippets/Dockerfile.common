@@ -5,6 +5,8 @@ WORKDIR /buildbot
 
 ENV BUILDBOT_BASEDIR=/build
 ENV ANDROID_HOME=/opt/android
+ENV ANDROID_NDK_HOME=/opt/android/ndk
+ENV ANDROID_NDK_ROOT=/opt/android/ndk
 
 # Install build dependencies for OpenVPN
 RUN mkdir -p /buildbot

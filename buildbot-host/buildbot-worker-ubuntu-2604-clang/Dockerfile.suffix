@@ -1,0 +1,4 @@
+ENV VCPKG_ROOT=/opt/vcpkg
+ENV VCPKG_DEFAULT_BINARY_CACHE=/home/buildbot/vcpkg/cache
+ENV CFLAGS="-fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer -O2"
+ENV CC=clang
