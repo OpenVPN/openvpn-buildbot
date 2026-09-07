@@ -36,6 +36,7 @@ use something like this:
     VOLUME_DIR=/var/lib/docker/volumes/buildmaster/_data/
     WORKER_PASSWORD=mysecretpassword
     DEFAULT_USER=ubuntu
+    GITHUB_TOKEN=<a github token>
 
 Then provision the environment:
 
