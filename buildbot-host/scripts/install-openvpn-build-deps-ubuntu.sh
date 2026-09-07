@@ -129,6 +129,9 @@ if $NEED_VCPKG; then
   ./bootstrap-vcpkg.sh
 fi
 
+curl -fsSL --output /usr/local/bin/shfmt https://github.com/mvdan/sh/releases/download/v3.13.1/shfmt_v3.13.1_linux_amd64
+chmod +x /usr/local/bin/shfmt
+
 # Only for some distros
 $APT_INSTALL systemd-dev || true
 
