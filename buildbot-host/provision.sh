@@ -39,6 +39,9 @@ mkdir -p /var/lib/repos
 mkdir -p $VOLUME_DIR/secrets
 chmod 700 $VOLUME_DIR/secrets
 echo $WORKER_PASSWORD > $VOLUME_DIR/secrets/worker-password
+if [ -n "${GITHUB_TOKEN}" ]; then
+    echo $GITHUB_TOKEN > $VOLUME_DIR/secrets/github-token
+fi
 chmod 600 $VOLUME_DIR/secrets/*
 
 # Ensure that "vagrant" user can run Docker commands
