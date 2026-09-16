@@ -2,12 +2,13 @@
 #
 set -ex
 
-yum -y install \
+dnf -y install \
 asio-devel \
 autoconf \
 autoconf-archive \
 automake \
 bzip2 \
+cargo \
 ccache \
 cmake \
 crypto-policies-scripts \
@@ -54,6 +55,7 @@ python3-pip \
 python3-pyOpenSSL \
 python3-setuptools \
 python3-wheel \
+rust \
 selinux-policy-devel \
 systemd-devel \
 tinyxml2-devel \
