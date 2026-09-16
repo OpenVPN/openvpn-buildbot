@@ -1,0 +1,45 @@
+ARG IMAGE=debian:11
+ARG DEPS_SH=install-openvpn-build-deps-ubuntu.sh
+ARG MY_NAME="buildbot-worker-debian-11"
+ARG MY_VERSION="v1.0.3"
+
+FROM $IMAGE
+LABEL maintainer="OpenVPN Community Project"
+USER root
+WORKDIR /buildbot
+
+ENV BUILDBOT_BASEDIR=/build
+ENV ANDROID_HOME=/opt/android
+ENV ANDROID_NDK_HOME=/opt/android/ndk
+ENV ANDROID_NDK_ROOT=/opt/android/ndk
+
+# Install build dependencies for OpenVPN
+RUN mkdir -p /buildbot
+# Switch to the snapshot sources since Debian 11 is EOL
+RUN sed -i -e '/deb\.debian\.org/d' -e 's/^# deb/deb [check-valid-until=no]/' /etc/apt/sources.list
+
+ARG DEPS_SH
+ARG INSTALL_MINGW
+ARG INSTALL_ANDROID_NDK
+COPY scripts/${DEPS_SH} /buildbot/
+RUN set -ex; \
+    /buildbot/${DEPS_SH}; \
+    rm -f ${DEPS_SH}
+
+# Install buildbot
+ARG MY_NAME
+ARG BUILDBOT_VERSION
+COPY scripts/install-lwipovpn.sh scripts/install-buildbot.sh t_client/*.rc t_client/*.txt ${MY_NAME}/t_client.* ${MY_NAME}/t_server_null.rc /buildbot/
+RUN set -ex; \
+    /buildbot/install-buildbot.sh; \
+    rm -f /buildbot/install-buildbot.sh
+
+RUN set -ex; \
+    /buildbot/install-lwipovpn.sh; \
+    rm -f /buildbot/install-lwipovpn.sh
+
+COPY buildbot.tac /buildbot/
+COPY start_agent.sh /buildbot/
+RUN mkdir -p /home/buildbot
+
+CMD ["/buildbot/start_agent.sh"]
