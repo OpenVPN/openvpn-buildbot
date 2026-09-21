@@ -12,8 +12,13 @@ fi
 
 # Check every directory and rebuild if a file starting with Dockerfile is found
 failed=
+skipped=
 for DOCKERFILE in $(find -maxdepth 2 -type f -regextype egrep -regex '.*/(Dockerfile|Dockerfile.base)'); do
     DIR=$(echo "$DOCKERFILE"|cut -d "/" -f 2)
+    if [ -e "$DIR/.skip_rebuild" ]; then
+	    skipped="$skipped $DIR"
+	    continue
+    fi
     if ! ./rebuild.sh "$DIR"; then
 	    failed="$failed $DIR"
     fi
@@ -24,6 +29,9 @@ docker container prune --force
 docker image prune --force
 docker buildx prune --force
 
+if [ -n "$skipped" ]; then
+	echo "The following builds were skipped: $skipped"
+fi
 if [ -n "$failed" ]; then
 	echo "The following builds failed: $failed"
 	exit 1

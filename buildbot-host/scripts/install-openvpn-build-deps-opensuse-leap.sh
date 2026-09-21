@@ -36,6 +36,7 @@ libuuid-devel \
 libxml2-devel \
 lzo-devel \
 make \
+meson \
 mbedtls-devel \
 openssl-devel \
 pam-devel \
