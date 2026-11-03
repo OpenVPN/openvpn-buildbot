@@ -9,16 +9,31 @@ import sys
 import requests
 
 
-def get_checks(args, auth):
+def checker_scheme(repository):
+    """Checker UUID scheme for a Gerrit repository.
+
+    Must match gerrit_checker_scheme() in buildmaster/master.cfg.
+    """
+    if repository == "openvpn":
+        return "buildbot"
+    return f"buildbot-{repository}"
+
+
+def get_checks(args, auth, repository):
     r = requests.get(f"{args.gerrit}/a/plugins/checks/checkers/", auth=auth)
     print(r.url)
     json_txt = r.text.removeprefix(")]}'\n")
     json_data = json.loads(json_txt)
+    prefix = f"{checker_scheme(repository)}:"
     checks = set()
     for check in json_data:
         if check["status"] != "ENABLED":
             continue
-        checks.add(check["uuid"].removeprefix("buildbot:"))
+        if check.get("repository") != repository:
+            continue
+        if not check["uuid"].startswith(prefix):
+            continue
+        checks.add(check["uuid"].removeprefix(prefix))
     return checks
 
 
@@ -49,7 +64,9 @@ def get_builders(args):
     return builders
 
 
-def sync_checks(checks, builders, args, auth):
+def sync_checks(checks, builders, args, auth, repository):
+    scheme = checker_scheme(repository)
+    print(f"repository {repository} (scheme {scheme}):")
     missing_checks = builders - checks
     print("missing_checks:\n" + "\n".join(sorted(missing_checks)))
     obsolete_checks = checks - builders
@@ -58,9 +75,9 @@ def sync_checks(checks, builders, args, auth):
     for check in missing_checks:
         print(f"create {check}")
         check_data = {
-            "uuid": f"buildbot:{check}",
+            "uuid": f"{scheme}:{check}",
             "name": check,
-            "repository": "openvpn",
+            "repository": repository,
             "blocking": ["STATE_NOT_PASSING"],
         }
         rc = requests.post(
@@ -75,7 +92,7 @@ def sync_checks(checks, builders, args, auth):
             "blocking": [],
         }
         rc = requests.post(
-            f"{args.gerrit}/a/plugins/checks/checkers/buildbot:{check}",
+            f"{args.gerrit}/a/plugins/checks/checkers/{scheme}:{check}",
             json=check_data,
             auth=auth,
         )
@@ -91,15 +108,24 @@ def main():
     parser.add_argument(
         "-b", "--buildbot", default="http://buildbot.community.aws.openvpn.in:8010"
     )
+    parser.add_argument(
+        "-r",
+        "--repository",
+        action="append",
+        help="Gerrit repository to sync checkers for (can be repeated, "
+        "default: openvpn and openvpn-private)",
+    )
     args = parser.parse_args()
+    repositories = args.repository or ["openvpn", "openvpn-private"]
 
     gerrit_user = os.environ["GERRIT_USER"]
     gerrit_pass = os.environ["GERRIT_PASS"]
     auth = requests.auth.HTTPBasicAuth(gerrit_user, gerrit_pass)
 
-    checks = get_checks(args, auth)
     builders = get_builders(args)
-    sync_checks(checks, builders, args, auth)
+    for repository in repositories:
+        checks = get_checks(args, auth, repository)
+        sync_checks(checks, builders, args, auth, repository)
 
 
 if __name__ == "__main__":
