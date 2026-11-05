@@ -1,0 +1,3 @@
+BUILDMASTER=buildmaster
+WORKERNAME=fedora-45
+WORKERPASS=vagrant
