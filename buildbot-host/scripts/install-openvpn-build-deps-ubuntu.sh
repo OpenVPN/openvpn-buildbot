@@ -67,6 +67,7 @@ make \
 meson \
 net-tools \
 openssh-client \
+pipenv \
 pkg-config \
 po-debconf \
 protobuf-compiler \

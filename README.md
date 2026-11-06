@@ -96,6 +96,10 @@ Buildbot master should now be listening on port 8010.
 
 * Compile tests against the operating system's default kernel
 
+## openvpn-rfc
+
+* HTML and text builds of the protocol RFC for Gerrit changes
+
 ## Relevant files and directories under buildbot-host:
 
 The buildbot-host directory contains a number scripts for settings up a
@@ -130,6 +134,7 @@ Here's a list of relevant directories:
     * *openvpn3*: files containing the build steps for openvpn3 (OpenVPN 3.x)
     * *openvpn3-linux*: files containing the build steps for openvpn3-linux
     * *ovpn-dco*: files containing the build steps for ovpn-dco
+    * *openvpn-rfc*: files containing the build steps for openvpn-rfc
 * *buildbot-worker-\<something\>*: files and configuration related to a worker
     * *Dockerfile.base*: a "configuration file" that contains ARG entries that will drive the logic in the main Dockerfile, *snippets/Dockerfile.common*. Used when provisioning the container.
     * *env*: sets environment variables that are required by the worker container (buildmaster, worker name, worker pass). Used when launching *static* containers. Not needed for *latent* worker containers. In other words, in most cases you can ignore the *env* file.
@@ -242,6 +247,9 @@ owner=openvpn3-linux@example.org
 
 [ovpn-dco]
 owner=ovpn-dco@example.org
+
+[openvpn-rfc]
+owner=openvpn-rfc@example.org
 ```
 
 Note that value of *owner* must not be quoted.
