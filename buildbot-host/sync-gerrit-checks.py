@@ -37,17 +37,23 @@ def get_checks(args, auth, repository):
     return checks
 
 
-def relevant_builder(name):
+def relevant_builder(name, repository):
+    if re.search(r"^__", name):
+        return False
+    # openvpn-rfc builders only report on the openvpn-rfc repository
+    is_rfc_builder = re.search(r"-openvpn-rfc$", name) is not None
+    if repository == "openvpn-rfc":
+        return is_rfc_builder
+    if is_rfc_builder:
+        return False
     if re.search(r"openvpn3", name):
         return False
     if re.search(r"ovpn-dco", name):
         return False
-    if re.search(r"^__", name):
-        return False
     return True
 
 
-def get_builders(args):
+def get_builders(args, repository):
     rm = requests.get(f"{args.buildbot}/api/v2/masters")
     print(rm.url)
     masters = [m for m in rm.json()["masters"] if m["active"]]
@@ -58,7 +64,7 @@ def get_builders(args):
     print(rb.url)
     builders = set()
     for builder in rb.json()["builders"]:
-        if relevant_builder(builder["name"]):
+        if relevant_builder(builder["name"], repository):
             check_name = builder["name"].replace("=", "")
             builders.add(check_name)
     return builders
@@ -113,17 +119,17 @@ def main():
         "--repository",
         action="append",
         help="Gerrit repository to sync checkers for (can be repeated, "
-        "default: openvpn and openvpn-private)",
+        "default: openvpn, openvpn-private and openvpn-rfc)",
     )
     args = parser.parse_args()
-    repositories = args.repository or ["openvpn", "openvpn-private"]
+    repositories = args.repository or ["openvpn", "openvpn-private", "openvpn-rfc"]
 
     gerrit_user = os.environ["GERRIT_USER"]
     gerrit_pass = os.environ["GERRIT_PASS"]
     auth = requests.auth.HTTPBasicAuth(gerrit_user, gerrit_pass)
 
-    builders = get_builders(args)
     for repository in repositories:
+        builders = get_builders(args, repository)
         checks = get_checks(args, auth, repository)
         sync_checks(checks, builders, args, auth, repository)
 

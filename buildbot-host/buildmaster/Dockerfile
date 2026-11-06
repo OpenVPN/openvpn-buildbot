@@ -33,6 +33,7 @@ ADD buildmaster/openvpn $BASEDIR/openvpn
 ADD buildmaster/openvpn3 $BASEDIR/openvpn3
 ADD buildmaster/openvpn3-linux $BASEDIR/openvpn3-linux
 ADD buildmaster/ovpn-dco $BASEDIR/ovpn-dco
+ADD buildmaster/openvpn-rfc $BASEDIR/openvpn-rfc
 
 WORKDIR $BASEDIR
 
