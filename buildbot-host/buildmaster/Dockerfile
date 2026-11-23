@@ -37,4 +37,14 @@ ADD buildmaster/openvpn-rfc $BASEDIR/openvpn-rfc
 
 WORKDIR $BASEDIR
 
+# Fail the image build if the configuration is broken. The secrets
+# directory normally lives on the persistent volume mounted at runtime,
+# so provide a temporary empty one for the check. EC2 workers are replaced
+# by plain workers since creating them requires AWS credentials.
+RUN set -e; \
+    mkdir -p persistent/secrets; \
+    . /buildbot_venv/bin/activate; \
+    BUILDBOT_CHECKCONFIG_ONLY=1 buildbot checkconfig $BASEDIR; \
+    rm -rf persistent
+
 CMD dumb-init $BASEDIR/start_buildmaster.sh
