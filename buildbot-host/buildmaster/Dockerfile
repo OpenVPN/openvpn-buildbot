@@ -37,4 +37,5 @@ ADD buildmaster/openvpn-rfc $BASEDIR/openvpn-rfc
 
 WORKDIR $BASEDIR
 
-CMD dumb-init $BASEDIR/start_buildmaster.sh
+# Use exec form so that dumb-init is PID 1 and forwards SIGTERM to twistd
+CMD ["dumb-init", "/var/lib/buildbot/masters/default/start_buildmaster.sh"]
