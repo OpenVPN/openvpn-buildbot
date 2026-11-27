@@ -13,6 +13,7 @@ PREFIX="buildbot-worker"
 
 for worker in $(ls -d1 "${BUILDBOT_HOST_DIR}/$PREFIX-"*)
 do
+  [ ! -e "$worker/.skip_rebuild" ] || continue
   WORKERNAME=$(basename $worker)
 
   ssh -l $SSH_USER -p 774 phillip.secure-computing.net /root/generate-client-cert "$CERT_ALG" "${HOSTNAME}-${WORKERNAME}" >$worker/t_client.inline
